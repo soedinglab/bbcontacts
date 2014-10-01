@@ -29,7 +29,7 @@ def main():
     parser.add_option("-e", "--evaluation-file", dest="evaluationfile", help="Provide a file containing the true contacts (BetaSheet916.dat, BetaSheet1452.dat or same format) for evaluation")
 
     options, args = parser.parse_args()
-    
+
     # Check that the options and arguments behave as expected
     if len(args) != 3:
         parser.error("Need three positional arguments: coupling matrix, diversity value for that matrix (sqrt(N)/L) and prefix for the output files")
@@ -44,19 +44,24 @@ def main():
     diversityvalue = float(diversityvalue)
 
     if options.evaluationfile and not os.path.exists(options.evaluationfile):
-        print "\nWARNING: provided evaluation file %s does not exist, evaluation will not be performed"%options.evaluationfile
+        print("\nWARNING: provided evaluation file %s does not exist, evaluation will not be performed"%options.evaluationfile)
         options.evaluationfile = False
 
     progdir = os.path.dirname(os.path.realpath(__file__)) # current directory
     # Read config file
-    from ConfigParser import SafeConfigParser
+
+    try:
+        from ConfigParser import SafeConfigParser
+    except ImportError:
+        from configparser import SafeConfigParser
+
     config = SafeConfigParser()
     config.optionxform = str # case-sensitive options in config file
     if options.configfile:
         config.read(options.configfile)
     else:
         config.read(os.path.join(progdir, "bbcontacts.conf"))
-    
+
     ## Files containing HMM parameters
     trprobfile = config.get("HMM parameter files", "trprobfile")
     prioroffsetDSSPfile = config.get("HMM parameter files", "prioroffsetDSSPfile")
@@ -103,14 +108,14 @@ def main():
         else:
             identifier = pdb
 
-    print "\nStarting run %s %.3f"%(identifier,diversityvalue)
+    print("\nStarting run %s %.3f"%(identifier,diversityvalue))
 
     # Process the secondary structure input file
     dsspMasking = False
     if options.dsspfile:
         # Should we apply DSSP masking?
         dsspMasking = True
-        print "\nWARNING: DSSP masking is on!!"
+        print("\nWARNING: DSSP masking is on!!")
         secstructseq, secstructdic = hmm.iohmm.processSecStruct(options.dsspfile, outputprefix, identifier, diversityvalue, dsspMasking, options.evaluationfile)
         outputprefix += ".DSSP"
     else:
@@ -133,13 +138,13 @@ def main():
 
     # Retrieve parameters for the coupling-based part of the emission probabilities
     if diversityvalue > highestdiversity:
-        print "\nWARNING - Diversity too high, setting diversity to %.3f"%highestdiversity
+        print("\nWARNING - Diversity too high, setting diversity to %.3f"%highestdiversity)
         diversityvalue = highestdiversity
     params, lowDiversity = hmm.paramshmm.getTransformedGammaParameters(identifier, diversityvalue, fitparamsfile)
     if diversityvalue < lowestdiversity:
         lowDiversity = True
     if lowDiversity:
-        print "\nWARNING: there are too few sequences in the multiple sequence alignment, so only the secondary structure will count to predict beta contacts (residue couplings will be ignored) for %s %.2f"%(identifier,diversityvalue)
+        print("\nWARNING: there are too few sequences in the multiple sequence alignment, so only the secondary structure will count to predict beta contacts (residue couplings will be ignored) for %s %.2f"%(identifier,diversityvalue))
 
     # Retrieve transition probabilities
     trprob = hmm.paramshmm.getTransitionProbabilities(trprobfile)
@@ -152,22 +157,22 @@ def main():
 
     # Set thresholds for stopping the Viterbi algorithm
     viterbirecalclower, viterbirecalclowerPSM = hmm.paramshmm.setViterbiThresholds(identifier, nbres, dsspMasking, viterbiparams)
-    
+
     # Calculate all emission probabilites
-    print "\nCalculating emission probabilities"
+    print("\nCalculating emission probabilities")
     emissions = hmm.paramshmm.calculateAllEmissions(nbres, predcouplings, secstructseq, secprobdic, params, lowDiversity)
 
     # Run the Viterbi algorithm
-    print "\nViterbi paths"
+    print("\nViterbi paths")
     allpaths, recalculateCount = hmm.viterbi.runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, viterbirecalclower, viterbirecalclowerPSM, PSMparams, dsspMasking, secstructseq, secstructdic, maskarounddiagparallel, maskarounddiagantiparallel, maskaroundcontact, options.noshorteningmode)
 
     # Post-process results and write output
-    print "\nPost-processing results and writing output..."
+    print("\nPost-processing results and writing output...")
     hmm.postprocesshmm.postProcessPaths(allpaths,outputprefix,viterbirecalclower,identifier,diversityvalue, maskaroundcontact, secstructdic, options.evaluationfile)
 
     endtime = time.time()
 
-    print "End of run: %s %5.3f %6i\tPSM iterations: %3i\tLength of run: %16.2f s"%(identifier, diversityvalue, nbres, recalculateCount-1, endtime-starttime)
+    print("End of run: %s %5.3f %6i\tPSM iterations: %3i\tLength of run: %16.2f s"%(identifier, diversityvalue, nbres, recalculateCount-1, endtime-starttime))
 
 if __name__ == "__main__":
     main()

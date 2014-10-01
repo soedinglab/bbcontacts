@@ -5,11 +5,11 @@ import hmm.paramshmm
 
 def initViterbiParallel(viterbi, nbres, dsspMasking, secstructdic, secstructseq, prioroffset, secprior):
     """ Initialize the Viterbi algorithm for the parallel case """
-    for i in xrange(1,nbres+1):
+    for i in range(1,nbres+1):
         if (not dsspMasking or i in secstructdic["allprev"]):
             viterbi["start"][i][0] = 0.0 + prioroffset[i] + 0.0 # no secprior for non-assigned secondary structure
-    for j in xrange(1,nbres+1):
-        for i in xrange(j+1,nbres+1):
+    for j in range(1,nbres+1):
+        for i in range(j+1,nbres+1):
             # local viterbi
             if not dsspMasking or (i in secstructdic["allprev"] and j in secstructdic["allprev"] and secstructdic[i+1]!=secstructdic[j+1]):
                 # For the DSSP case, allow only the combinations where both residues belong to DSSP strands and are not in the same strand
@@ -22,11 +22,11 @@ def initViterbiParallel(viterbi, nbres, dsspMasking, secstructdic, secstructseq,
 
 def initViterbiAntiparallel(viterbi, nbres, dsspMasking, secstructdic, secstructseq, prioroffset, secprior):
     """ Initialize the Viterbi algorithm for the antiparallel case """
-    for i in xrange(1,nbres+1):
+    for i in range(1,nbres+1):
         if (not dsspMasking or (i in secstructdic["allprev"] and i in secstructdic["allprevanti"])):
                 viterbi["start"][i][i] = 0.0 + prioroffset[2] + 0.0 # no secprior for non-assigned secondary structure
-    for j in xrange(2,nbres+1): # for j in xrange(1,nbres+1): # cannot have a start at j=1
-        for i in xrange(j+1,nbres+1):
+    for j in range(2,nbres+1): # for j in range(1,nbres+1): # cannot have a start at j=1
+        for i in range(j+1,nbres+1):
             # local viterbi
             if not dsspMasking or (i in secstructdic["allprev"] and j in secstructdic["allprevanti"] and secstructdic[i+1]!=secstructdic[j-1]):
                 # For the DSSP case, allow only the combinations where both residues belong to DSSP strands and are not in the same strand
@@ -42,8 +42,8 @@ def initViterbiAntiparallel(viterbi, nbres, dsspMasking, secstructdic, secstruct
 def getInitialCrossoutParallel(dsspMasking,secstructdic,nbres,maskarounddiagparallel):
     """ Define the initial set of crossed-out cells for the parallel case """
     crossout = set()
-    for i in xrange(0,nbres+1):
-        for jj in xrange(0,maskarounddiagparallel+1):
+    for i in range(0,nbres+1):
+        for jj in range(0,maskarounddiagparallel+1):
             # protecting the region close to the diagonal from getting contacts propagating from a larger distance through bulges
             crossout.add((i+jj,i))
             crossout.add((i,i+jj))
@@ -53,8 +53,8 @@ def getInitialCrossoutParallel(dsspMasking,secstructdic,nbres,maskarounddiagpara
         # this is just to speed up the Viterbi algorithm,
         # as these regions would get Viterbi score = -inf anyway
         # due to the secondary structure part of the emission probabilities
-        for i in xrange(1,nbres+1):
-            for j in xrange(1,nbres+1):
+        for i in range(1,nbres+1):
+            for j in range(1,nbres+1):
                 if i not in secstructdic["all"] or j not in secstructdic["all"] or (i in secstructdic["all"] and j in secstructdic["all"] and secstructdic[i]==secstructdic[j]):
                     crossout.add((i,j))
     return crossout
@@ -62,8 +62,8 @@ def getInitialCrossoutParallel(dsspMasking,secstructdic,nbres,maskarounddiagpara
 def getInitialCrossoutAntiparallel(dsspMasking,secstructdic,nbres,maskarounddiagantiparallel):
     """ Define the initial set of crossed-out cells for the antiparallel case """
     crossout = set()
-    for i in xrange(0,nbres+1):
-        for jj in xrange(0,maskarounddiagantiparallel+1):
+    for i in range(0,nbres+1):
+        for jj in range(0,maskarounddiagantiparallel+1):
             # protecting the region close to the diagonal from getting contacts propagating from a larger distance through bulges
             crossout.add((i+jj,i))
             crossout.add((i,i+jj))
@@ -74,8 +74,8 @@ def getInitialCrossoutAntiparallel(dsspMasking,secstructdic,nbres,maskarounddiag
         # this is just to speed up the Viterbi algorithm,
         # as these regions would get Viterbi score = -inf anyway
         # due to the secondary structure part of the emission probabilities
-        for i in xrange(1,nbres+1):
-            for j in xrange(1,nbres+1):
+        for i in range(1,nbres+1):
+            for j in range(1,nbres+1):
                 if i not in secstructdic["all"] or j not in secstructdic["all"] or (i in secstructdic["all"] and j in secstructdic["all"] and secstructdic[i]==secstructdic[j]):
                     crossout.add((i,j))
     return crossout
@@ -103,8 +103,8 @@ def getCrossoutFromAllpaths(direction, crossout, newcrossout, ite, allpaths, nbr
             # not the ones that were initially crossed-out (e.g. close to the diagonal or in DSSP non-E regions)
             # (newcrossout is used in prediction-shortening mode, to speed up the recalculation)
             newcrossout.add((k[2],k[3]))
-            for ii in xrange(mask):
-                for jj in xrange(mask):
+            for ii in range(mask):
+                for jj in range(mask):
                     ## if direc=="Antiparallel":
                     crossout.add((k[2]-ii,k[3]-jj))
                     crossout.add((k[2]+ii,k[3]+jj))
@@ -243,7 +243,7 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
 
         # if we are recalculating, update the transition probabilities
         if recalculateCount >= 1:
-            print "(Prediction-shortening mode) Rerunning the Viterbi algorithm with lower transition probabilities", recalculateCount
+            print("(Prediction-shortening mode) Rerunning the Viterbi algorithm with lower transition probabilities", recalculateCount)
             trprob = hmm.paramshmm.updateTransitionProbabilities(trprob, recalculateFactor, PSMparams["PSMtrprobstepsize"])
 
         recalculateFactor = 0
@@ -262,8 +262,8 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
         newcrossoutparallel = set()
         crossoutparallel, numcontactsparallel, newcrossoutparallel = getCrossoutFromAllpaths(direction, crossoutparallel, newcrossoutparallel, ite, allpaths, nbres, numcontactsparallel, maskaroundcontact)
         (viterbi[direction]) = initViterbiParallel(viterbi[direction], nbres, dsspMasking, secstructdic, secstructseq, prioroffset[direction], secprior[direction])
-        for j in xrange(1,nbres+1):
-            for i in xrange(j+1,nbres+1):
+        for j in range(1,nbres+1):
+            for i in range(j+1,nbres+1):
                 if (i,j) in crossoutparallel:
                     continue
                 (viterbi[direction],viterbiptr[direction]) = updateViterbiCrossout(dsspMasking,direction,crossoutparallel,viterbi[direction],viterbiptr[direction],i,j,trprob[direction],secstructseq,nbres,emissions,recalculateCount)
@@ -272,9 +272,9 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
         newcrossoutantiparallel = set()
         crossoutantiparallel, numcontactsantiparallel, newcrossoutantiparallel = getCrossoutFromAllpaths(direction, crossoutantiparallel, newcrossoutantiparallel, ite, allpaths, nbres, numcontactsantiparallel, maskaroundcontact)
         (viterbi[direction]) = initViterbiAntiparallel(viterbi[direction], nbres, dsspMasking, secstructdic, secstructseq, prioroffset[direction], secprior[direction])
-        for k in xrange(1,nbres):
+        for k in range(1,nbres):
             # k is the difference between i and j
-            for j in xrange(1,nbres-k+1):
+            for j in range(1,nbres-k+1):
                 i = j+k
                 if (i,j) in crossoutantiparallel:
                     continue
@@ -343,8 +343,8 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
                 direction = "Parallel"
                 (viterbi[direction]) = initViterbiParallel(viterbi[direction], nbres, dsspMasking, secstructdic, secstructseq, prioroffset[direction], secprior[direction])
                 crossoutSeen = False
-                for j in xrange(1,nbres+1):
-                    for i in xrange(j+1,nbres+1):
+                for j in range(1,nbres+1):
+                    for i in range(j+1,nbres+1):
                         if (i,j) in newcrossoutparallel:
                             if not crossoutSeen:
                                 # find the first crossed-out position to determine which Viterbi scores should be recalculated
@@ -365,9 +365,9 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
                 direction = "Antiparallel"
                 (viterbi[direction]) = initViterbiAntiparallel(viterbi[direction], nbres, dsspMasking, secstructdic, secstructseq, prioroffset[direction], secprior[direction])
                 crossoutSeen = False
-                for k in xrange(1,nbres):
+                for k in range(1,nbres):
                     # k is the difference between i and j
-                    for j in xrange(1,nbres-k+1):
+                    for j in range(1,nbres-k+1):
                         i = j+k
                         if (i,j) in newcrossoutantiparallel:
                             if not crossoutSeen:
@@ -422,7 +422,7 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
                     problematic[k[0]].add((res1,res2))
                 recalculateViterbi = True
                 if recalculateCount == 0:
-                    print "\nWARNING: Now entering prediction-shortening mode, the prediction might take a few minutes to several hours (depending on the protein size).\nYou might consider switching this mode off with option -l (at the potential cost of more false positives due to very long predicted contacts.\n"
+                    print("\nWARNING: Now entering prediction-shortening mode, the prediction might take a few minutes to several hours (depending on the protein size).\nYou might consider switching this mode off with option -l (at the potential cost of more false positives due to very long predicted contacts.\n")
                 if len(path) > PSMparams["PSMspeeduppathlength"]:
                     #speed up process by substracting twice the PSMtrprobstepsize from the transition probs
                     recalculateFactor = 1
@@ -433,12 +433,12 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
             pathprob += (PSMparams["PSMtrprobstepsize"]) * recalculateCount * (len(path)-2) # Add PSMtrprobstepsize for each transition except the transition to the last state
             allpaths.append((pathprob,path))
             if len(path) > 1:
-                print ite,"%13.10f"%pathprob,path[::-1][1][0],
+                print(ite,"%13.10f"%pathprob,path[::-1][1][0],)
                 for k in path[::-1][1:]:
                     res1 = k[2]
                     res2 = k[3]
-                    print k[1],k[2],k[3],"-",
-                print ""
+                    print(k[1],k[2],k[3],"-",)
+                print("")
 
             p = pathprob
 
