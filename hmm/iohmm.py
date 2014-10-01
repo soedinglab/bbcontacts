@@ -117,7 +117,7 @@ def writeOutputBeforeExiting(outputprefix, identifier, diversityvalue, evaluatio
         # register the true contacting pairs
         realresiduecontacts = collections.defaultdict(lambda: collections.defaultdict(lambda: "F"))
         if len(evaldic)==0:
-            print "\nWARNING: PDB identifier %s was not found in evaluation file %s, no evaluation will be performed\n"%(identifier, evaluationfile)
+            print("\nWARNING: PDB identifier %s was not found in evaluation file %s, no evaluation will be performed\n"%(identifier, evaluationfile))
             evaluationfile = False
         else:
             for part in [evaldic[3], evaldic[4]]:

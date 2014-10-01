@@ -12,13 +12,13 @@ from scipy.special import gamma
 def smoothMatrix(predcouplings, nbres, smoothingsize):
     """ Smooth the coupling matrix with the given SMOOTHINGSIZE parameter """
     localmean =  collections.defaultdict(lambda: collections.defaultdict(float))
-    for i in xrange(1, nbres+1):
-        for j in xrange(1, nbres+1):
+    for i in range(1, nbres+1):
+        for j in range(1, nbres+1):
             if j<=i:
                 continue
             localsum = [] # intermediate list to store values retrieved from the smoothing area
-            for kk in xrange(0, smoothingsize+1):
-                for ll in xrange(0, smoothingsize+1):
+            for kk in range(0, smoothingsize+1):
+                for ll in range(0, smoothingsize+1):
                     try:
                         localsum.append(predcouplings[i+kk][j+ll])
                     except KeyError:
@@ -42,8 +42,8 @@ def smoothMatrix(predcouplings, nbres, smoothingsize):
             # localmean contains the average over the area centered at (i,j) and extending by SMOOTHINGSIZE in each direction
             localmean[i][j] = sum(localsum) / float(len(localsum))
             localmean[j][i] = localmean[i][j]
-    for i in xrange(1, nbres+1):
-        for j in xrange(1, nbres+1):
+    for i in range(1, nbres+1):
+        for j in range(1, nbres+1):
             # subtract the localmean from each cell of the coupling matrix
             predcouplings[i][j] -= localmean[i][j]
     return predcouplings
@@ -257,9 +257,9 @@ def getPriorOffset(prioroffsetfile, nbres):
                 otherpars[direction].append(float(line[2]))
 
     for direction in prioroffset.keys():
-        for d in xrange(D1[direction]+1,D2[direction]+1):
+        for d in range(D1[direction]+1,D2[direction]+1):
             prioroffset[direction][d] = np.log(linpars[direction][0] + float(d) * linpars[direction][1])
-        for d in xrange(D2[direction]+1,nbres+1):
+        for d in range(D2[direction]+1,nbres+1):
             prioroffset[direction][d] = np.log(otherpars[direction][0] + otherpars[direction][1] * np.exp(-float(d)/otherpars[direction][2]))
 
     return prioroffset
@@ -267,7 +267,7 @@ def getPriorOffset(prioroffsetfile, nbres):
 
 def setViterbiThresholds(identifier, nbres, dsspMasking, viterbiparams):
     """ Set the thresholds at which the Viterbi algorithm is stopped """
-    
+
     if dsspMasking:
         viterbirecalclower = viterbiparams["viterbilowerthreshDSSP"]
         viterbirecalclowertimesaving = viterbiparams["tsviterbilowerthreshDSSP"]
@@ -278,13 +278,13 @@ def setViterbiThresholds(identifier, nbres, dsspMasking, viterbiparams):
         viterbirecalclowertimesaving = viterbiparams["tsviterbilowerthreshPSIPRED"]
         viterbirecalclowertimesavingplus = viterbiparams["xtsviterbilowerthreshPSIPRED"]
 
-    
+
     if nbres > viterbiparams["tspdbsize"]:
-        print "\nWARNING: Lowering the threshold for Viterbi detection because this protein %s is too big (time-saving threshold)"%identifier
+        print("\nWARNING: Lowering the threshold for Viterbi detection because this protein %s is too big (time-saving threshold)"%identifier)
         viterbirecalclower = viterbirecalclowertimesaving
         viterbirecalclowerPSM = viterbirecalclowertimesavingplus
     elif nbres > viterbiparams["xtspdbsize"]:
-        print "\nWARNING: Lowering the threshold for Viterbi detection because this protein %s is too big (extra-time-saving threshold)"%identifier
+        print("\nWARNING: Lowering the threshold for Viterbi detection because this protein %s is too big (extra-time-saving threshold)"%identifier)
         viterbirecalclower = viterbirecalclowertimesavingplus
         viterbirecalclowerPSM = viterbirecalclowertimesavingplus
     else:
@@ -326,7 +326,7 @@ def calculateEmission(direction, nbres, predcouplings, secstructseq, secprobdic,
     # Because all states except background have the same coupling-based emission probabilities, calculate the product only once
     state="internal"
     posshift = params[direction][state][2]["shift"]
-    
+
     # calculate the sum of coupling-based log-odds for all cells in the pattern
     probcoupling = 0.0
     if not lowDiversity:
@@ -361,7 +361,7 @@ def calculateEmission(direction, nbres, predcouplings, secstructseq, secprobdic,
 def FindPatternAroundParallel(i, j, size):
     """ Find the cells belonging to the pattern around cell (i,j) in the parallel case """
     tab = []
-    for k in xrange(-1,2):
+    for k in range(-1,2):
         # check that we do not run out of the contact map
         if (i+k) > size or (j-k) <= 0:
             tab.append("NA")
@@ -377,7 +377,7 @@ def FindPatternAroundParallel(i, j, size):
 def FindPatternAroundAntiparallel(i, j, size):
     """ Find the cells belonging to the pattern around cell (i,j) in the antiparallel case """
     tab = []
-    for k in xrange(-1,2):
+    for k in range(-1,2):
         # check that we do not run out of the contact map
         if (i+k) > size or (j+k) > size or (i+k) <=0 or (j+k) <=0:
             tab.append("NA")
@@ -396,8 +396,8 @@ def calculateAllEmissions(nbres, predcouplings, secstructseq, secprobdic, params
     emissions = collections.defaultdict(lambda: collections.defaultdict(lambda: collections.defaultdict(lambda: collections.defaultdict(float))))
     patternfunction = {"Parallel":FindPatternAroundParallel, "Antiparallel":FindPatternAroundAntiparallel}
     for direction in ["Parallel","Antiparallel"]:
-        for j in xrange(1,nbres+1):
-            for i in xrange(j+1,nbres+1):
+        for j in range(1,nbres+1):
+            for i in range(j+1,nbres+1):
                 # for each position, find the cells belonging to the pattern around this cell
                 patt = patternfunction[direction](i,j,nbres)
                 # calculate the emission probability accordingly

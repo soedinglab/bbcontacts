@@ -11,7 +11,7 @@ def postProcessPaths(allpaths, outputprefix, minimumprob, identifier, diversityv
     # If no Viterbi path has been retained, still record a result line
     if len(allpaths)==0 or allpaths == [(-float("inf"), [])]:
         hmm.iohmm.writeOutputBeforeExiting(outputprefix, identifier, diversityvalue, evaluationfile)
-        
+
     # Read real contacts from evaluation file
     totalnumberrescontacts = "NA"
     if evaluationfile:
@@ -40,7 +40,7 @@ def postProcessPaths(allpaths, outputprefix, minimumprob, identifier, diversityv
         # register the true contacting pairs
         realresiduecontacts = collections.defaultdict(lambda: collections.defaultdict(lambda: "F"))
         if len(evaldic)==0:
-            print "\nWARNING: PDB identifier %s was not found in evaluation file %s, no evaluation will be performed\n"%(identifier, evaluationfile)
+            print("\nWARNING: PDB identifier %s was not found in evaluation file %s, no evaluation will be performed\n"%(identifier, evaluationfile))
             evaluationfile = False
         else:
             for part in [evaldic[3], evaldic[4]]:
@@ -142,8 +142,8 @@ def postProcessPaths(allpaths, outputprefix, minimumprob, identifier, diversityv
             (iend,jend) = (mostprobablepath[0][2]+1,mostprobablepath[0][3]-1)
         for ki in range(istart,iend+1):
             for kj in range(min(jstart,jend),max(jstart,jend)+1):
-                for ii in xrange(mask):
-                    for jj in xrange(mask):
+                for ii in range(mask):
+                    for jj in range(mask):
                         if direc=="Antiparallel":
                             if (ki-ii) in range(istart,iend+1) and (kj-jj) in range(min(jstart,jend),max(jstart,jend)+1):
                                 filteringcrossout.add((ki-ii,kj-jj))
