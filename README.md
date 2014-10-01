@@ -11,7 +11,7 @@ bbcontacts can make use of a secondary structure assignment or a secondary struc
 
 To run bbcontacts, you will need
 
-   * Python version 2.6 or 2.7,
+   * Python version 2.6 or 2.7 or 3.4,
    * the Python packages for scientific computing [NumPy](http://www.numpy.org/) and [SciPy](http://www.scipy.org/scipylib/index.html).
 
 bbcontacts has been tested on Ubuntu 14.04 and Scientific Linux 6.5.
