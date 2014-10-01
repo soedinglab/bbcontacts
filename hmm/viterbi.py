@@ -432,13 +432,14 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
             # With the "regular" version, recalculateCount is 0 so this will not change the Viterbi score.
             pathprob += (PSMparams["PSMtrprobstepsize"]) * recalculateCount * (len(path)-2) # Add PSMtrprobstepsize for each transition except the transition to the last state
             allpaths.append((pathprob,path))
+            linetoprint = ""
             if len(path) > 1:
-                print(ite,"%13.10f"%pathprob,path[::-1][1][0],)
+                linetoprint += ("%5i %13.10f %12s "%(ite,pathprob,path[::-1][1][0]))
                 for k in path[::-1][1:]:
                     res1 = k[2]
                     res2 = k[3]
-                    print(k[1],k[2],k[3],"-",)
-                print("")
+                    linetoprint += ("%10s %4i %4i - "%(k[1],k[2],k[3]))
+            print(linetoprint)
 
             p = pathprob
 
