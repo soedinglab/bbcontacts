@@ -1,0 +1,53 @@
+#  direction	   statefrom	     stateto	      trprob
+    Parallel	     bulgei0	     bulgei1	  1.000000000000
+    Parallel	     bulgei1	         end	  0.181818181818
+    Parallel	     bulgei1	    internal	  0.590909090909
+    Parallel	     bulgei1	        last	  0.227272727273
+    Parallel	     bulgej0	     bulgej1	  1.000000000000
+    Parallel	     bulgej1	     bulgej2	  0.076923076923
+    Parallel	     bulgej1	         end	  0.115384615385
+    Parallel	     bulgej1	    internal	  0.615384615385
+    Parallel	     bulgej1	        last	  0.192307692308
+    Parallel	     bulgej2	    internal	  1.000000000000
+    Parallel	       first	     bulgei0	  0.017460317460
+    Parallel	       first	     bulgej0	  0.025396825397
+    Parallel	       first	    internal	  0.744444444444
+    Parallel	       first	        last	  0.212698412698
+    Parallel	   firstlast	         end	  1.000000000000
+    Parallel	    internal	     bulgei0	  0.009523809524
+    Parallel	    internal	     bulgej0	  0.008658008658
+    Parallel	    internal	    internal	  0.567099567100
+    Parallel	    internal	        last	  0.414718614719
+    Parallel	        last	         end	  1.000000000000
+    Parallel	       start	       first	  1.000000000000
+Antiparallel	     bulgei0	     bulgei1	  1.000000000000
+Antiparallel	     bulgei1	     bulgei0	  0.006430868167
+Antiparallel	     bulgei1	     bulgei2	  0.051446945338
+Antiparallel	     bulgei1	     bulgej0	  0.003215434084
+Antiparallel	     bulgei1	    internal	  0.636655948553
+Antiparallel	     bulgei1	        last	  0.302250803859
+Antiparallel	     bulgei2	     bulgej0	  0.062500000000
+Antiparallel	     bulgei2	    internal	  0.875000000000
+Antiparallel	     bulgei2	        last	  0.062500000000
+Antiparallel	     bulgej0	     bulgej1	  1.000000000000
+Antiparallel	     bulgej1	     bulgej0	  0.009404388715
+Antiparallel	     bulgej1	     bulgej2	  0.065830721003
+Antiparallel	     bulgej1	         end	  0.153605015674
+Antiparallel	     bulgej1	    internal	  0.605015673981
+Antiparallel	     bulgej1	        last	  0.166144200627
+Antiparallel	     bulgej2	     bulgej0	  0.095238095238
+Antiparallel	     bulgej2	         end	  0.047619047619
+Antiparallel	     bulgej2	    internal	  0.619047619048
+Antiparallel	     bulgej2	        last	  0.238095238095
+Antiparallel	       first	     bulgei0	  0.015171503958
+Antiparallel	       first	     bulgej0	  0.031332453826
+Antiparallel	       first	    internal	  0.767810026385
+Antiparallel	       first	        last	  0.185686015831
+Antiparallel	   firstlast	         end	  1.000000000000
+Antiparallel	    internal	     bulgei0	  0.024072709408
+Antiparallel	    internal	     bulgej0	  0.026651928273
+Antiparallel	    internal	    internal	  0.662736428396
+Antiparallel	    internal	        last	  0.286538933923
+Antiparallel	        last	         end	  1.000000000000
+Antiparallel	       start	     bulgei0	  0.021619877380
+Antiparallel	       start	       first	  0.978380122620

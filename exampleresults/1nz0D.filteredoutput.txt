@@ -1,0 +1,22 @@
+#identifier diversity     direction viterbiscore indexpred        state  res1  res2
+      1nz0D      0.38      Parallel    11.241439         1        first    77    39
+      1nz0D      0.38      Parallel    11.241439         1     internal    78    40
+      1nz0D      0.38      Parallel    11.241439         1     internal    79    41
+      1nz0D      0.38      Parallel    11.241439         1     internal    80    42
+      1nz0D      0.38      Parallel    11.241439         1     internal    81    43
+      1nz0D      0.38      Parallel    11.241439         1     internal    82    44
+      1nz0D      0.38      Parallel    11.241439         1         last    83    45
+      1nz0D      0.38  Antiparallel     7.170769         2        first    76    32
+      1nz0D      0.38  Antiparallel     7.170769         2     internal    77    31
+      1nz0D      0.38  Antiparallel     7.170769         2     internal    78    30
+      1nz0D      0.38  Antiparallel     7.170769         2     internal    79    29
+      1nz0D      0.38  Antiparallel     7.170769         2     internal    80    28
+      1nz0D      0.38  Antiparallel     7.170769         2     internal    81    27
+      1nz0D      0.38  Antiparallel     7.170769         2         last    82    26
+      1nz0D      0.38  Antiparallel     5.342076         3        first    26    23
+      1nz0D      0.38  Antiparallel     5.342076         3     internal    27    22
+      1nz0D      0.38  Antiparallel     5.342076         3     internal    28    21
+      1nz0D      0.38  Antiparallel     5.342076         3     internal    29    20
+      1nz0D      0.38  Antiparallel     5.342076         3         last    30    19
+      1nz0D      0.38  Antiparallel    -1.500414         5        first    48    45
+      1nz0D      0.38  Antiparallel    -1.500414         5         last    49    44

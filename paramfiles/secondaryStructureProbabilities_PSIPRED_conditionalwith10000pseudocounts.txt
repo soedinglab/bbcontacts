@@ -1,0 +1,191 @@
+### Antiparallel
+Antiparallel	  H	  H	                 end	0.073998
+Antiparallel	  H	  H	             bulgej0	0.037852
+Antiparallel	  H	  H	             bulgej1	0.031405
+Antiparallel	  H	  H	             bulgej2	0.023907
+Antiparallel	  H	  H	            internal	0.076433
+Antiparallel	  H	  H	          background	0.919294
+Antiparallel	  H	  H	                last	0.057880
+Antiparallel	  H	  H	               first	0.056002
+Antiparallel	  H	  H	             bulgei1	0.035491
+Antiparallel	  H	  H	             bulgei0	0.035488
+Antiparallel	  H	  H	             bulgei2	0.000000
+Antiparallel	  H	  C	                 end	0.057801
+Antiparallel	  H	  C	             bulgej0	0.035855
+Antiparallel	  H	  C	             bulgej1	0.029442
+Antiparallel	  H	  C	             bulgej2	0.023757
+Antiparallel	  H	  C	            internal	0.030997
+Antiparallel	  H	  C	          background	0.080406
+Antiparallel	  H	  C	                last	0.037048
+Antiparallel	  H	  C	               first	0.031039
+Antiparallel	  H	  C	             bulgei1	0.033443
+Antiparallel	  H	  C	             bulgei0	0.033391
+Antiparallel	  H	  C	             bulgei2	0.000000
+Antiparallel	  H	  E	                 end	0.045614
+Antiparallel	  H	  E	             bulgej0	0.034514
+Antiparallel	  H	  E	             bulgej1	0.028553
+Antiparallel	  H	  E	             bulgej2	0.023764
+Antiparallel	  H	  E	            internal	0.016431
+Antiparallel	  H	  E	          background	0.010337
+Antiparallel	  H	  E	                last	0.028093
+Antiparallel	  H	  E	               first	0.032862
+Antiparallel	  H	  E	             bulgei1	0.032411
+Antiparallel	  H	  E	             bulgei0	0.032464
+Antiparallel	  H	  E	             bulgei2	0.000000
+Antiparallel	  C	  H	                 end	0.555969
+Antiparallel	  C	  H	             bulgej0	0.228745
+Antiparallel	  C	  H	             bulgej1	0.252246
+Antiparallel	  C	  H	             bulgej2	0.499950
+Antiparallel	  C	  H	            internal	0.125487
+Antiparallel	  C	  H	          background	0.077873
+Antiparallel	  C	  H	                last	0.306979
+Antiparallel	  C	  H	               first	0.336002
+Antiparallel	  C	  H	             bulgei1	0.240876
+Antiparallel	  C	  H	             bulgei0	0.266521
+Antiparallel	  C	  H	             bulgei2	0.625000
+Antiparallel	  C	  C	                 end	0.620726
+Antiparallel	  C	  C	             bulgej0	0.236082
+Antiparallel	  C	  C	             bulgej1	0.260569
+Antiparallel	  C	  C	             bulgej2	0.500798
+Antiparallel	  C	  C	            internal	0.231244
+Antiparallel	  C	  C	          background	0.836886
+Antiparallel	  C	  C	                last	0.379920
+Antiparallel	  C	  C	               first	0.386327
+Antiparallel	  C	  C	             bulgei1	0.249148
+Antiparallel	  C	  C	             bulgei0	0.275837
+Antiparallel	  C	  C	             bulgei2	0.625387
+Antiparallel	  C	  E	                 end	0.521007
+Antiparallel	  C	  E	             bulgej0	0.221921
+Antiparallel	  C	  E	             bulgej1	0.244483
+Antiparallel	  C	  E	             bulgej2	0.499251
+Antiparallel	  C	  E	            internal	0.071582
+Antiparallel	  C	  E	          background	0.180896
+Antiparallel	  C	  E	                last	0.260122
+Antiparallel	  C	  E	               first	0.288379
+Antiparallel	  C	  E	             bulgei1	0.233616
+Antiparallel	  C	  E	             bulgei0	0.258443
+Antiparallel	  C	  E	             bulgei2	0.624613
+Antiparallel	  E	  H	                 end	0.370033
+Antiparallel	  E	  H	             bulgej0	0.733403
+Antiparallel	  E	  H	             bulgej1	0.716349
+Antiparallel	  E	  H	             bulgej2	0.476143
+Antiparallel	  E	  H	            internal	0.798081
+Antiparallel	  E	  H	          background	0.002833
+Antiparallel	  E	  H	                last	0.635141
+Antiparallel	  E	  H	               first	0.607995
+Antiparallel	  E	  H	             bulgei1	0.723633
+Antiparallel	  E	  H	             bulgei0	0.697991
+Antiparallel	  E	  H	             bulgei2	0.375000
+Antiparallel	  E	  C	                 end	0.321473
+Antiparallel	  E	  C	             bulgej0	0.728062
+Antiparallel	  E	  C	             bulgej1	0.709989
+Antiparallel	  E	  C	             bulgej2	0.475444
+Antiparallel	  E	  C	            internal	0.737759
+Antiparallel	  E	  C	          background	0.056823
+Antiparallel	  E	  C	                last	0.583031
+Antiparallel	  E	  C	               first	0.582635
+Antiparallel	  E	  C	             bulgei1	0.717408
+Antiparallel	  E	  C	             bulgei0	0.690772
+Antiparallel	  E	  C	             bulgei2	0.374613
+Antiparallel	  E	  E	                 end	0.433379
+Antiparallel	  E	  E	             bulgej0	0.743565
+Antiparallel	  E	  E	             bulgej1	0.726964
+Antiparallel	  E	  E	             bulgej2	0.476984
+Antiparallel	  E	  E	            internal	0.911988
+Antiparallel	  E	  E	          background	0.808766
+Antiparallel	  E	  E	                last	0.711785
+Antiparallel	  E	  E	               first	0.678759
+Antiparallel	  E	  E	             bulgei1	0.733974
+Antiparallel	  E	  E	             bulgei0	0.709093
+Antiparallel	  E	  E	             bulgei2	0.375387
+### Parallel
+    Parallel	  H	  H	                 end	0.047667
+    Parallel	  H	  H	             bulgej0	0.077200
+    Parallel	  H	  H	             bulgej1	0.077292
+    Parallel	  H	  H	             bulgej2	0.000000
+    Parallel	  H	  H	            internal	0.023361
+    Parallel	  H	  H	          background	0.924096
+    Parallel	  H	  H	                last	0.025388
+    Parallel	  H	  H	             bulgei1	0.045545
+    Parallel	  H	  H	             bulgei0	0.045550
+    Parallel	  H	  H	               first	0.034045
+    Parallel	  H	  C	                 end	0.045139
+    Parallel	  H	  C	             bulgej0	0.076892
+    Parallel	  H	  C	             bulgej1	0.076800
+    Parallel	  H	  C	             bulgej2	0.000000
+    Parallel	  H	  C	            internal	0.019189
+    Parallel	  H	  C	          background	0.086698
+    Parallel	  H	  C	                last	0.023178
+    Parallel	  H	  C	             bulgei1	0.045495
+    Parallel	  H	  C	             bulgei0	0.045396
+    Parallel	  H	  C	               first	0.029433
+    Parallel	  H	  E	                 end	0.043296
+    Parallel	  H	  E	             bulgej0	0.076678
+    Parallel	  H	  E	             bulgej1	0.076678
+    Parallel	  H	  E	             bulgej2	0.000000
+    Parallel	  H	  E	            internal	0.016480
+    Parallel	  H	  E	          background	0.011334
+    Parallel	  H	  E	                last	0.021435
+    Parallel	  H	  E	             bulgei1	0.045323
+    Parallel	  H	  E	             bulgei0	0.045418
+    Parallel	  H	  E	               first	0.029538
+    Parallel	  C	  H	                 end	0.567061
+    Parallel	  C	  H	             bulgej0	0.288375
+    Parallel	  C	  H	             bulgej1	0.173008
+    Parallel	  C	  H	             bulgej2	0.750000
+    Parallel	  C	  H	            internal	0.078024
+    Parallel	  C	  H	          background	0.073324
+    Parallel	  C	  H	                last	0.255448
+    Parallel	  C	  H	             bulgei1	0.386386
+    Parallel	  C	  H	             bulgei0	0.318150
+    Parallel	  C	  H	               first	0.240118
+    Parallel	  C	  C	                 end	0.580053
+    Parallel	  C	  C	             bulgej0	0.289070
+    Parallel	  C	  C	             bulgej1	0.173499
+    Parallel	  C	  C	             bulgej2	0.750050
+    Parallel	  C	  C	            internal	0.088848
+    Parallel	  C	  C	          background	0.841166
+    Parallel	  C	  C	                last	0.268276
+    Parallel	  C	  C	             bulgei1	0.386861
+    Parallel	  C	  C	             bulgei0	0.318867
+    Parallel	  C	  C	               first	0.249424
+    Parallel	  C	  E	                 end	0.558385
+    Parallel	  C	  E	             bulgej0	0.287940
+    Parallel	  C	  E	             bulgej1	0.172724
+    Parallel	  C	  E	             bulgej2	0.749950
+    Parallel	  C	  E	            internal	0.068501
+    Parallel	  C	  E	          background	0.175641
+    Parallel	  C	  E	                last	0.242878
+    Parallel	  C	  E	             bulgei1	0.385845
+    Parallel	  C	  E	             bulgei0	0.317529
+    Parallel	  C	  E	               first	0.229299
+    Parallel	  E	  H	                 end	0.385272
+    Parallel	  E	  H	             bulgej0	0.634425
+    Parallel	  E	  H	             bulgej1	0.749700
+    Parallel	  E	  H	             bulgej2	0.250000
+    Parallel	  E	  H	            internal	0.898614
+    Parallel	  E	  H	          background	0.002580
+    Parallel	  E	  H	                last	0.719164
+    Parallel	  E	  H	             bulgei1	0.568068
+    Parallel	  E	  H	             bulgei0	0.636300
+    Parallel	  E	  H	               first	0.725837
+    Parallel	  E	  C	                 end	0.374809
+    Parallel	  E	  C	             bulgej0	0.634038
+    Parallel	  E	  C	             bulgej1	0.749700
+    Parallel	  E	  C	             bulgej2	0.249950
+    Parallel	  E	  C	            internal	0.891963
+    Parallel	  E	  C	          background	0.059176
+    Parallel	  E	  C	                last	0.708546
+    Parallel	  E	  C	             bulgei1	0.567644
+    Parallel	  E	  C	             bulgei0	0.635737
+    Parallel	  E	  C	               first	0.721143
+    Parallel	  E	  E	                 end	0.398319
+    Parallel	  E	  E	             bulgej0	0.635382
+    Parallel	  E	  E	             bulgej1	0.750598
+    Parallel	  E	  E	             bulgej2	0.250050
+    Parallel	  E	  E	            internal	0.915019
+    Parallel	  E	  E	          background	0.813026
+    Parallel	  E	  E	                last	0.735687
+    Parallel	  E	  E	             bulgei1	0.568832
+    Parallel	  E	  E	             bulgei0	0.637052
+    Parallel	  E	  E	               first	0.741163
