@@ -23,8 +23,8 @@ def main():
     parser.add_option("-d", "--dssp-file", dest="dsspfile", help="Use DSSP file DSSPFILE containing secondary structure assignment")
     parser.add_option("-p", "--psipred-file", dest="psipredfile", help="Use PSIPRED file PSIPREDFILE containing secondary structure prediction")
     parser.add_option("-c", "--config-file", dest="configfile", help="Use config file CONFIGFILE")
-    parser.add_option("-s", "--smoothingsize", dest="smoothingsize", type=int, default=10, help="Perform smoothing of the coupling matrix before decoding, over an area extending by SMOOTHINGSIZE in each direction [default=%default, use 0 for no smoothing]")
-    parser.add_option("-l", "--long-predictions", "--no-shortening-mode", action="store_true", dest="noshorteningmode", default=False, help="Turn off (slow) prediction-shortening mode (this mode is on by default but will only apply when long predictions occur)")
+    parser.add_option("-s", "--smoothingsize", dest="smoothingsize", type=int, default=10, help="Perform local background correction of the coupling matrix before decoding: from each coupling, subtract the average coupling (smoothed background) over an area extending by SMOOTHINGSIZE in each direction [default=%default, use 0 for no local background correction]")
+    parser.add_option("-l", "--long-predictions", "--no-shortening-mode", action="store_true", dest="noshorteningmode", default=False, help="Turn off (slow) prediction-shortening mode (this mode is on by default but will only get triggered when long predictions occur)")
     parser.add_option("-n", "--pdb-name", dest="pdbname", help="Provide a PDB identifier (when also using -e, this will be the PDB name to look for in EVALUATIONFILE)")
     parser.add_option("-e", "--evaluation-file", dest="evaluationfile", help="Provide a file containing the true contacts (BetaSheet916.dat, BetaSheet1452.dat or same format) for evaluation")
 
@@ -125,7 +125,7 @@ def main():
     # Retrieve couplings
     predcouplings, nbres = hmm.iohmm.retrieveCouplings(couplingmatrix, outputprefix, identifier, diversityvalue, secstructseq, options.evaluationfile)
     if options.smoothingsize and options.smoothingsize != 0:
-        # Smooth the coupling matrix
+        # Local background correction of the coupling matrix
         predcouplings = hmm.paramshmm.smoothMatrix(predcouplings, nbres, options.smoothingsize)
 
     # Retrieve parameters for the secondary-structure-based part of the emission probabilities

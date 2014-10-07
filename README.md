@@ -54,7 +54,7 @@ More specifically, for bbcontacts to give the best possible result, you should e
 Additionally, 
 
    * the -c option allows you to specify a configuration file (by default, the config file is assumed to be the bbcontacts.conf file in the working directory),
-   * the -s option allows you to specify a smoothing range (by default, -s 10 is used since it was found to give the best performance; the use of a larger value for the smoothing range (e.g. 20 or 30) is discouraged since it degrades the results and increases the runtime; -s 0 turns off the smoothing),
+   * the -s option allows you to specify a smoothing range for the local background correction (by default, -s 10 is used since it was found to give the best performance; the use of a larger value for the smoothing range (e.g. 20 or 30) is discouraged since it degrades the results and increases the runtime; -s 0 turns off the local background correction),
    * the -l option allows you to turn off the prediction-shortening mode (this mode is on by default but will only apply when long predictions occur; in this case, it will shorten the predictions to a reasonable length which improves the overall performance, but it will also slow down the bbcontacts prediction process),
    * the -n option allows you to specify an identifier for the run, which will be used in the output files,
    * the -e option allows you to provide an evaluation file, in the format provided for either dataset BetaSheet916 [5] or dataset BetaSheet1452 [6]. In this case, the identifier provided with the -n option is required and will be searched for in the evaluation file.
@@ -71,6 +71,7 @@ When you run bbcontacts, you have to specify the output prefix as the third posi
    * outputprefix.filteredoutput.txt (or, if a DSSP assignment is specified, outputprefix.DSSP.filteredoutput.txt): this file contains the beta-contact predictions filtered to retain only predictions satisfying the topological constraints of beta-contacts (see paper for details),
    * outputprefix.filteredoutput.eval.txt (or, if a DSSP assignment is specified, outputprefix.DSSP.filteredoutput.eval.txt): this file is only generated if you gave an evaluation file (-e option) and an identifier (-n option) that was found in this file. This file has the same content as the filtered output file, plus two additional columns: a T/F column telling whether the contact is a TP or FP according to the evaluation file and a column containing the total number of true residue-level contacts for this identifier.
 
+If no pattern is detected above the Viterbi score thresholds specified in the configuration file, the output file contains only one line where all output values are NA.
 
 ## Citation
 If you use bbcontacts, please cite:
