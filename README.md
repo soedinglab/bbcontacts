@@ -81,9 +81,9 @@ J. Andreani and J. Soeding (2014) "bbcontacts: prediction of beta-strand pairing
 
 ## Contact
 
-[Johannes Soeding](mailto:johannes.soeding@mpibpc.mpg.de) (corresponding author)
-
 [Jessica Andreani](mailto:jessica.andreani@mpibpc.mpg.de)
+
+[Johannes Soeding](mailto:johannes.soeding@mpibpc.mpg.de)
 
 
 ## References
