@@ -10,7 +10,9 @@ from scipy.special import gamma
 
 
 def smoothMatrix(predcouplings, nbres, smoothingsize):
-    """ Smooth the coupling matrix with the given SMOOTHINGSIZE parameter """
+    """ Local background correction of  the coupling matrix
+    by subtracting the average coupling over an area determined by
+    the given SMOOTHINGSIZE parameter """
     localmean =  collections.defaultdict(lambda: collections.defaultdict(float))
     for i in range(1, nbres+1):
         for j in range(1, nbres+1):
