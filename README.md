@@ -64,12 +64,20 @@ Here are two example command lines to run bbcontacts for the provided example:
        ./bbcontacts.py example/1nz0D.mat 0.376 1nz0D -p example/1nz0D.psipred
        ./bbcontacts.py example/1nz0D.mat 0.376 1nz0D -d example/1nz0D.dssp -c bbcontacts.conf -s 10 -l -n 1nz0D
 
+To check that the output you obtain is the same as the expected output, you can then run:
+
+       diff 1nz0D.filteredoutput.txt exampleresults/
+       diff 1nz0D.DSSP.filteredoutput.txt exampleresults/
+
+
 ### Output
 
 When you run bbcontacts, you have to specify the output prefix as the third positional argument. Several output files will be generated:
 
    * outputprefix.filteredoutput.txt (or, if a DSSP assignment is specified, outputprefix.DSSP.filteredoutput.txt): this file contains the beta-contact predictions filtered to retain only predictions satisfying the topological constraints of beta-contacts (see paper for details),
    * outputprefix.filteredoutput.eval.txt (or, if a DSSP assignment is specified, outputprefix.DSSP.filteredoutput.eval.txt): this file is only generated if you gave an evaluation file (-e option) and an identifier (-n option) that was found in this file. This file has the same content as the filtered output file, plus two additional columns: a T/F column telling whether the contact is a TP or FP according to the evaluation file and a column containing the total number of true residue-level contacts for this identifier.
+
+Note: if the output file already exists, then the new output will be appended at the end of the file.
 
 
 ## Citation

@@ -57,10 +57,12 @@ def main():
 
     config = SafeConfigParser()
     config.optionxform = str # case-sensitive options in config file
+    defaultConfig = False
     if options.configfile:
         config.read(options.configfile)
     else:
         config.read(os.path.join(progdir, "bbcontacts.conf"))
+        defaultConfig = True
 
     ## Files containing HMM parameters
     trprobfile = config.get("HMM parameter files", "trprobfile")
@@ -71,6 +73,16 @@ def main():
     singlesecstructprobDSSPfile = config.get("HMM parameter files", "singlesecstructprobDSSPfile")
     singlesecstructprobPSIPREDfile = config.get("HMM parameter files", "singlesecstructprobPSIPREDfile")
     fitparamsfile = config.get("HMM parameter files", "fitparamsfile")
+
+    if defaultConfig:
+        # If the default config is used, the paths to the parameter files are relative
+        # to the directory where bbcontacts was cloned
+        filelist = [trprobfile, prioroffsetDSSPfile, prioroffsetPSIPREDfile, condsecstructprobDSSPfile, condsecstructprobPSIPREDfile, singlesecstructprobDSSPfile, singlesecstructprobPSIPREDfile, fitparamsfile]
+        for idx, fi in enumerate(filelist):
+            filelist[idx] = os.path.join(progdir, fi)
+        trprobfile, prioroffsetDSSPfile, prioroffsetPSIPREDfile, condsecstructprobDSSPfile, condsecstructprobPSIPREDfile, singlesecstructprobDSSPfile, singlesecstructprobPSIPREDfile, fitparamsfile = filelist
+
+    print condsecstructprobPSIPREDfile
 
     ## Other constant parameter values
     # Lowest and highest diversity values that the program can manage, given the fits
@@ -103,10 +115,7 @@ def main():
     else:
         # Generate an identifier from the coupling matrix filename
         pdb = os.path.basename(couplingmatrix).split(".")[0]
-        if len(pdb)==9:
-            identifier = pdb[0:4]+pdb[5]+pdb[7:9]
-        else:
-            identifier = pdb
+        identifier = pdb
 
     print("\nStarting run %s %.3f"%(identifier,diversityvalue))
 
