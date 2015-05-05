@@ -50,6 +50,9 @@ def retrieveCouplings(couplingmatrix, outputprefix, identifier, diversityvalue, 
 
     ff = open(couplingmatrix).readlines()
     for ite,l in enumerate(ff):
+        if l[0]=="#":
+            # skip comment lines such as the "#>META>" line now present at the end of the coupling matrix in CCMpred version 0.2.0
+            continue
         # start indices from 1 and increment by 1
         pred[ite+1] = {}
         for ite2,m in enumerate(l.strip().split("\t")):
