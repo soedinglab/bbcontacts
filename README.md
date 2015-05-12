@@ -85,7 +85,7 @@ Note: If no pattern is detected above the Viterbi score thresholds specified in 
 ## Citation
 If you use bbcontacts, please cite:
 
-J. Andreani and J. Soeding (2014) "bbcontacts: prediction of beta-strand pairing from direct coupling patterns" (submitted)
+J. Andreani and J. Soeding (2015) "bbcontacts: prediction of beta-strand pairing from direct coupling patterns", Bioinformatics. [doi:10.1093/bioinformatics/btv041](http://dx.doi.org/10.1093/bioinformatics/btv041)
 
 
 ## Contact

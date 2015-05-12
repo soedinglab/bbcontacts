@@ -9,9 +9,9 @@ The tutorial covers the following steps:
    * STEP 2: Run a direct coupling prediction
    * STEP 3: Generate a secondary structure prediction
    * STEP 4: Run bbcontacts
+   * Troubleshooting / FAQ
 
 **At each step, the expected output is available (for comparison purposes) in the exampleresults/ directory of the git repository.**
-
 
 ## STEP 0: Install required softare
 
