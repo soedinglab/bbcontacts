@@ -3,6 +3,8 @@
 starting from a matrix of predicted residue-residue couplings and a secondary structure assignment or prediction.
 """
 
+from __future__ import print_function
+
 import os
 
 import hmm.iohmm
@@ -81,8 +83,6 @@ def main():
         for idx, fi in enumerate(filelist):
             filelist[idx] = os.path.join(progdir, fi)
         trprobfile, prioroffsetDSSPfile, prioroffsetPSIPREDfile, condsecstructprobDSSPfile, condsecstructprobPSIPREDfile, singlesecstructprobDSSPfile, singlesecstructprobPSIPREDfile, fitparamsfile = filelist
-
-    print condsecstructprobPSIPREDfile
 
     ## Other constant parameter values
     # Lowest and highest diversity values that the program can manage, given the fits
