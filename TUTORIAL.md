@@ -104,7 +104,7 @@ To run bbcontacts for a given protein, you will need
 
 Here is an example command line to run bbcontacts for the provided example from the input files we just computed:
        
-          ./bbcontacts.py example/1nz0D.filt.mat 0.376 1nz0D -p example/1nz0D.filt.psipred
+          bbcontacts example/1nz0D.filt.mat 0.376 1nz0D -p example/1nz0D.filt.psipred
 
 You will obtain an output file 1nz0D.filteredoutput.txt containing the bbcontacts predictions.
 To compare the output you obtained to the expected output, you can then run:
@@ -116,7 +116,7 @@ The Viterbi score values might differ slightly due to the numerical differences 
 
 As the example provided here (1nz0D) is a chain from the BetaSheet916 dataset [5], you can also download the [dataset annotation file](http://contact.ics.uci.edu/betadata/betasheet.dat) and run:
        
-          ./bbcontacts.py example/1nz0D.filt.mat 0.376 1nz0D -p example/1nz0D.filt.psipred -n 1nz0D -e betasheet.dat
+          bbcontacts example/1nz0D.filt.mat 0.376 1nz0D -p example/1nz0D.filt.psipred -n 1nz0D -e betasheet.dat
 
 In addition to the 1nz0D.filteredoutput.txt output file, you will obtain an additional output file 1nz0D.filteredoutput.eval.txt that contains two extra columns: a T/F column telling whether the contact is a TP or FP according to the evaluation file and a column containing the total number of true residue-level contacts for this PDB chain (useful for recall calculation).
 

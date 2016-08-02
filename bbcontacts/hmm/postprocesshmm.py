@@ -1,16 +1,16 @@
 """ Post-processing HMM decoding results and writing output """
 
 import collections
-import hmm.iohmm
+from bbcontacts.hmm import iohmm
 
 def postProcessPaths(allpaths, outputprefix, minimumprob, identifier, diversityvalue, mask, secstructdic, evaluationfile):
     """ Post process the list of all retained Viterbi paths and write output """
     # Write headers
-    outputfilefiltered, outputfileeval = hmm.iohmm.writeHeaders(outputprefix, evaluationfile)
+    outputfilefiltered, outputfileeval = iohmm.writeHeaders(outputprefix, evaluationfile)
 
     # If no Viterbi path has been retained, still record a result line
     if len(allpaths)==0 or allpaths == [(-float("inf"), [])]:
-        hmm.iohmm.writeOutputBeforeExiting(outputprefix, identifier, diversityvalue, evaluationfile)
+        iohmm.writeOutputBeforeExiting(outputprefix, identifier, diversityvalue, evaluationfile)
 
     # Read real contacts from evaluation file
     totalnumberrescontacts = "NA"
@@ -157,7 +157,7 @@ def postProcessPaths(allpaths, outputprefix, minimumprob, identifier, diversityv
 
 
         # Filtering: write filtered output (only accepted contacts)
-        hmm.iohmm.writeOutput(outputfilefiltered, identifier, diversityvalue, mostprobablepathendprob, mostprobablepath, indexpredicted)
+        iohmm.writeOutput(outputfilefiltered, identifier, diversityvalue, mostprobablepathendprob, mostprobablepath, indexpredicted)
         if evaluationfile:
             # Write filtered output with evaluation results (residue-level)
-            hmm.iohmm.writeOutputEval(outputfileeval, identifier, diversityvalue, mostprobablepathendprob, mostprobablepath, indexpredicted, realresiduecontacts, totalnumberrescontacts)
+            iohmm.writeOutputEval(outputfileeval, identifier, diversityvalue, mostprobablepathendprob, mostprobablepath, indexpredicted, realresiduecontacts, totalnumberrescontacts)
