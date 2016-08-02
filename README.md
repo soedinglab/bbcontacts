@@ -27,7 +27,12 @@ The following software is not necessary to run bbcontacts itself, but it is usef
 
 
 ## Installation
-bbcontacts is written in Python, therefore no installation is required. Simply clone the git repository and run bbcontacts.py.
+bbcontacts is written in Python, and can be installed with a simple command. Simply clone the git repository and run 
+
+       cd bbcontacts
+       python setup.py install
+
+You can run bbcontacts by calling ``bbcontacts`` from the command line.
 
 
 ## License
@@ -36,7 +41,7 @@ bbcontacts is released under the GNU Affero General Public License v3 or later. 
 
 ## Usage
 
-     Usage: bbcontacts.py [options] couplingmatrix diversityvalue outputprefix (-d DSSPsecstructfile | -p PSIPREDsecstructfile)
+     Usage: bbcontacts [options] couplingmatrix diversityvalue outputprefix (-d DSSPsecstructfile | -p PSIPREDsecstructfile)
 
 ### Input and options
 
@@ -61,8 +66,8 @@ Additionally,
 
 Here are two example command lines to run bbcontacts for the provided example:
        
-       ./bbcontacts.py example/1nz0D.mat 0.376 1nz0D -p example/1nz0D.psipred
-       ./bbcontacts.py example/1nz0D.mat 0.376 1nz0D -d example/1nz0D.dssp -c bbcontacts.conf -s 10 -l -n 1nz0D
+       bbcontacts example/1nz0D.mat 0.376 1nz0D -p example/1nz0D.psipred
+       bbcontacts example/1nz0D.mat 0.376 1nz0D -d example/1nz0D.dssp -c bbcontacts.conf -s 10 -l -n 1nz0D
 
 To check that the output you obtain is the same as the expected output, you can then run:
 
