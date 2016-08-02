@@ -23,19 +23,10 @@ setup(
     url='https://github.com/fsimkovic/bbcontacts',
     package_dir={'bbcontacts': 'bbcontacts'},
     packages=['bbcontacts', 'bbcontacts.hmm'],
-    package_data={
-        'bbcontacts': ['bbcontacts.conf', 'paramfiles/*'],
-    },
+    package_data={'bbcontacts': ['bbcontacts.conf', 'paramfiles/*']},
     platforms=['Linux', 'Mac OS-X', 'Unix', 'Windows'],
-    install_requires=[
-        'numpy', 
-        'scipy',
-    ],
-    entry_points={
-        'console_scripts': [
-            'bbcontacts = bbcontacts.main:main',
-        ],
-    },
+    install_requires=['numpy', 'scipy'],
+    entry_points={'console_scripts': ['bbcontacts = bbcontacts.main:main']},
     include_package_data=True,
     zip_safe=False,
 )
