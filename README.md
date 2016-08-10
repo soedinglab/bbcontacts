@@ -67,7 +67,7 @@ Additionally,
 Here are two example command lines to run bbcontacts for the provided example:
        
        bbcontacts example/1nz0D.mat 0.376 1nz0D -p example/1nz0D.psipred
-       bbcontacts example/1nz0D.mat 0.376 1nz0D -d example/1nz0D.dssp -c bbcontacts.conf -s 10 -l -n 1nz0D
+       bbcontacts example/1nz0D.mat 0.376 1nz0D -d example/1nz0D.dssp -c bbcontacts/bbcontacts.conf -s 10 -l -n 1nz0D
 
 To check that the output you obtain is the same as the expected output, you can then run:
 
