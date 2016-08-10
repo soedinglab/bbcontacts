@@ -21,13 +21,18 @@ bbcontacts has been tested on Ubuntu 14.04 and Scientific Linux 6.5.
 The following software is not necessary to run bbcontacts itself, but it is useful to generate input files for bbcontacts
 
    * [HHblits](http://toolkit.genzentrum.lmu.de/hhblits/) [1] for generation of multiple sequence alignments (takes a single sequence as input)
-   * [CCMpred](https://bitbucket.org/soedinglab/ccmpred/) [2] for prediction of direct couplings (takes a multiple sequence alignment as input)
+   * [CCMpred](https://github.com/soedinglab/ccmpred/) [2] for prediction of direct couplings (takes a multiple sequence alignment as input)
    * [DSSP](http://swift.cmbi.ru.nl/gv/dssp/) [3] for secondary structure assignment (takes a PDB structure as input)
    * [PSIPRED](http://bioinf.cs.ucl.ac.uk/psipred/) [4] for secondary structure prediction (takes a multiple sequence alignment as input)
 
 
 ## Installation
-bbcontacts is written in Python, therefore no installation is required. Simply clone the git repository and run bbcontacts.py.
+bbcontacts is written in Python, and can be installed with a simple command. Simply clone the git repository and run 
+
+       cd bbcontacts
+       python setup.py install
+
+You can run bbcontacts by calling ``bbcontacts`` from the command line.
 
 
 ## License
@@ -36,7 +41,7 @@ bbcontacts is released under the GNU Affero General Public License v3 or later. 
 
 ## Usage
 
-     Usage: bbcontacts.py [options] couplingmatrix diversityvalue outputprefix (-d DSSPsecstructfile | -p PSIPREDsecstructfile)
+     Usage: bbcontacts [options] couplingmatrix diversityvalue outputprefix (-d DSSPsecstructfile | -p PSIPREDsecstructfile)
 
 ### Input and options
 
@@ -61,8 +66,8 @@ Additionally,
 
 Here are two example command lines to run bbcontacts for the provided example:
        
-       ./bbcontacts.py example/1nz0D.mat 0.376 1nz0D -p example/1nz0D.psipred
-       ./bbcontacts.py example/1nz0D.mat 0.376 1nz0D -d example/1nz0D.dssp -c bbcontacts.conf -s 10 -l -n 1nz0D
+       bbcontacts example/1nz0D.mat 0.376 1nz0D -p example/1nz0D.psipred
+       bbcontacts example/1nz0D.mat 0.376 1nz0D -d example/1nz0D.dssp -c bbcontacts/bbcontacts.conf -s 10 -l -n 1nz0D
 
 To check that the output you obtain is the same as the expected output, you can then run:
 
@@ -105,7 +110,7 @@ J. Andreani and J. Soeding (2015) "bbcontacts: prediction of beta-strand pairing
 
    [4] D. T. Jones (1999). Protein secondary structure prediction based on position-specific scoring matrices. J. Mol. Biol., 292, 195-202.
 
-   [5] J. Cheng and P. Baldi (2005). Three-stage prediction of protein beta-sheets by neural networks, alignments and graph algorithms. Bioinformatics, 21 Suppl 1, 75-84. [Link to the BetaSheet916 dataset file](http://contact.ics.uci.edu/betadata/betasheet.dat) (last accessed 12 September 2014)
+   [5] J. Cheng and P. Baldi (2005). Three-stage prediction of protein beta-sheets by neural networks, alignments and graph algorithms. Bioinformatics, 21 Suppl 1, 75-84. [Link to the BetaSheet916 dataset file](http://download.igb.uci.edu/betadata/betasheet.dat) (last accessed 12 September 2014)
 
    [6] C. Savojardo, P. Fariselli, P. L. Martelli and R. Casadio (2013). BCov: a method for predicting beta-sheet topology using sparse inverse covariance estimation and integer programming. Bioinformatics, 29, 3151-3157. [Link to the BetaSheet1452 dataset file](http://biocomp.unibo.it/savojard/bcov/BetaSheet1452.dat) (last accessed 12 September 2014)
 

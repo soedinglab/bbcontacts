@@ -4,22 +4,27 @@ starting from a matrix of predicted residue-residue couplings and a secondary st
 """
 
 from __future__ import print_function
+try:
+    from ConfigParser import SafeConfigParser
+except ImportError:
+    from configparser import SafeConfigParser
 
+
+import optparse
 import os
+import time
 
-import hmm.iohmm
-import hmm.paramshmm
-import hmm.viterbi
-import hmm.postprocesshmm
+from bbcontacts.hmm import iohmm
+from bbcontacts.hmm import paramshmm
+from bbcontacts.hmm import viterbi
+from bbcontacts.hmm import postprocesshmm
 
 
 def main():
     # Keep track of how long this run will take
-    import time
     starttime = time.time()
 
     # Parse options and arguments
-    import optparse
     parser = optparse.OptionParser(usage="%prog [options] couplingmatrix diversityvalue outputprefix (-d DSSPsecstructfile | -p PSIPREDsecstructfile)")
 
     parser.add_option("-d", "--dssp-file", dest="dsspfile", help="Use DSSP file DSSPFILE containing secondary structure assignment")
@@ -50,13 +55,9 @@ def main():
         options.evaluationfile = False
 
     progdir = os.path.dirname(os.path.realpath(__file__)) # current directory
+    print(progdir)
+
     # Read config file
-
-    try:
-        from ConfigParser import SafeConfigParser
-    except ImportError:
-        from configparser import SafeConfigParser
-
     config = SafeConfigParser()
     config.optionxform = str # case-sensitive options in config file
     defaultConfig = False
@@ -65,7 +66,7 @@ def main():
     else:
         config.read(os.path.join(progdir, "bbcontacts.conf"))
         defaultConfig = True
-
+    
     ## Files containing HMM parameters
     trprobfile = config.get("HMM parameter files", "trprobfile")
     prioroffsetDSSPfile = config.get("HMM parameter files", "prioroffsetDSSPfile")
@@ -125,59 +126,59 @@ def main():
         # Should we apply DSSP masking?
         dsspMasking = True
         print("\nWARNING: DSSP masking is on!!")
-        secstructseq, secstructdic = hmm.iohmm.processSecStruct(options.dsspfile, outputprefix, identifier, diversityvalue, dsspMasking, options.evaluationfile)
+        secstructseq, secstructdic = iohmm.processSecStruct(options.dsspfile, outputprefix, identifier, diversityvalue, dsspMasking, options.evaluationfile)
         outputprefix += ".DSSP"
     else:
         dsspMasking = False
-        secstructseq, secstructdic = hmm.iohmm.processSecStruct(options.psipredfile, outputprefix, identifier, diversityvalue, dsspMasking, options.evaluationfile)
+        secstructseq, secstructdic = iohmm.processSecStruct(options.psipredfile, outputprefix, identifier, diversityvalue, dsspMasking, options.evaluationfile)
 
     # Retrieve couplings
-    predcouplings, nbres = hmm.iohmm.retrieveCouplings(couplingmatrix, outputprefix, identifier, diversityvalue, secstructseq, options.evaluationfile)
+    predcouplings, nbres = iohmm.retrieveCouplings(couplingmatrix, outputprefix, identifier, diversityvalue, secstructseq, options.evaluationfile)
     if options.smoothingsize and options.smoothingsize != 0:
         # Local background correction of the coupling matrix
-        predcouplings = hmm.paramshmm.smoothMatrix(predcouplings, nbres, options.smoothingsize)
+        predcouplings = paramshmm.smoothMatrix(predcouplings, nbres, options.smoothingsize)
 
     # Retrieve parameters for the secondary-structure-based part of the emission probabilities
     if dsspMasking:
-        secprobdic = hmm.paramshmm.getSecondaryStructureProbabilities(condsecstructprobDSSPfile)
-        secprior = hmm.paramshmm.getSecondaryStructurePrior(singlesecstructprobDSSPfile)
+        secprobdic = paramshmm.getSecondaryStructureProbabilities(condsecstructprobDSSPfile)
+        secprior = paramshmm.getSecondaryStructurePrior(singlesecstructprobDSSPfile)
     else:
-        secprobdic = hmm.paramshmm.getSecondaryStructureProbabilities(condsecstructprobPSIPREDfile)
-        secprior = hmm.paramshmm.getSecondaryStructurePrior(singlesecstructprobPSIPREDfile)
+        secprobdic = paramshmm.getSecondaryStructureProbabilities(condsecstructprobPSIPREDfile)
+        secprior = paramshmm.getSecondaryStructurePrior(singlesecstructprobPSIPREDfile)
 
     # Retrieve parameters for the coupling-based part of the emission probabilities
     if diversityvalue > highestdiversity:
         print("\nWARNING - Diversity too high, setting diversity to %.3f"%highestdiversity)
         diversityvalue = highestdiversity
-    params, lowDiversity = hmm.paramshmm.getTransformedGammaParameters(identifier, diversityvalue, fitparamsfile)
+    params, lowDiversity = paramshmm.getTransformedGammaParameters(identifier, diversityvalue, fitparamsfile)
     if diversityvalue < lowestdiversity:
         lowDiversity = True
     if lowDiversity:
         print("\nWARNING: there are too few sequences in the multiple sequence alignment, so only the secondary structure will count to predict beta contacts (residue couplings will be ignored) for %s %.2f"%(identifier,diversityvalue))
 
     # Retrieve transition probabilities
-    trprob = hmm.paramshmm.getTransitionProbabilities(trprobfile)
+    trprob = paramshmm.getTransitionProbabilities(trprobfile)
 
     # Retrieve prior offset (depending on distance to diagonal)
     if dsspMasking:
-        prioroffset = hmm.paramshmm.getPriorOffset(prioroffsetDSSPfile,nbres)
+        prioroffset = paramshmm.getPriorOffset(prioroffsetDSSPfile,nbres)
     else:
-        prioroffset = hmm.paramshmm.getPriorOffset(prioroffsetPSIPREDfile,nbres)
+        prioroffset = paramshmm.getPriorOffset(prioroffsetPSIPREDfile,nbres)
 
     # Set thresholds for stopping the Viterbi algorithm
-    viterbirecalclower, viterbirecalclowerPSM = hmm.paramshmm.setViterbiThresholds(identifier, nbres, dsspMasking, viterbiparams)
+    viterbirecalclower, viterbirecalclowerPSM = paramshmm.setViterbiThresholds(identifier, nbres, dsspMasking, viterbiparams)
 
     # Calculate all emission probabilites
     print("\nCalculating emission probabilities")
-    emissions = hmm.paramshmm.calculateAllEmissions(nbres, predcouplings, secstructseq, secprobdic, params, lowDiversity)
+    emissions = paramshmm.calculateAllEmissions(nbres, predcouplings, secstructseq, secprobdic, params, lowDiversity)
 
     # Run the Viterbi algorithm
     print("\nViterbi paths")
-    allpaths, recalculateCount = hmm.viterbi.runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, viterbirecalclower, viterbirecalclowerPSM, PSMparams, dsspMasking, secstructseq, secstructdic, maskarounddiagparallel, maskarounddiagantiparallel, maskaroundcontact, options.noshorteningmode)
+    allpaths, recalculateCount = viterbi.runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, viterbirecalclower, viterbirecalclowerPSM, PSMparams, dsspMasking, secstructseq, secstructdic, maskarounddiagparallel, maskarounddiagantiparallel, maskaroundcontact, options.noshorteningmode)
 
     # Post-process results and write output
     print("\nPost-processing results and writing output...")
-    hmm.postprocesshmm.postProcessPaths(allpaths,outputprefix,viterbirecalclower,identifier,diversityvalue, maskaroundcontact, secstructdic, options.evaluationfile)
+    postprocesshmm.postProcessPaths(allpaths,outputprefix,viterbirecalclower,identifier,diversityvalue, maskaroundcontact, secstructdic, options.evaluationfile)
 
     endtime = time.time()
 

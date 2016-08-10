@@ -1,7 +1,7 @@
 """ Viterbi algorithm for HMM decoding """
 
 import collections
-import hmm.paramshmm
+from bbcontacts.hmm import paramshmm
 
 def initViterbiParallel(viterbi, nbres, dsspMasking, secstructdic, secstructseq, prioroffset, secprior):
     """ Initialize the Viterbi algorithm for the parallel case """
@@ -244,7 +244,7 @@ def runViterbi(nbres, trprob, prioroffset, secprior, secprobdic, emissions, vite
         # if we are recalculating, update the transition probabilities
         if recalculateCount >= 1:
             print("(Prediction-shortening mode) Rerunning the Viterbi algorithm with lower transition probabilities", recalculateCount)
-            trprob = hmm.paramshmm.updateTransitionProbabilities(trprob, recalculateFactor, PSMparams["PSMtrprobstepsize"])
+            trprob = paramshmm.updateTransitionProbabilities(trprob, recalculateFactor, PSMparams["PSMtrprobstepsize"])
 
         recalculateFactor = 0
         allpaths = []
