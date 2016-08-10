@@ -40,13 +40,13 @@ The following software needs to be installed to generate input files for bbconta
 
    * [the HHsuite](ftp://toolkit.genzentrum.lmu.de/pub/HH-suite/hhsuite-latest.tar.gz) [1] for generation of multiple sequence alignments (takes a single sequence as input)
    * to generate multiple sequence alignments for CCMpred and bbcontacts, the [uniprot20 database for HHblits](ftp://toolkit.genzentrum.lmu.de/pub/HH-suite/databases/hhsuite_dbs/uniprot20_latest.tar.gz) is also required
-   * [CCMpred](https://bitbucket.org/soedinglab/ccmpred/) [2] for prediction of direct couplings (takes a multiple sequence alignment as input)
+   * [CCMpred](https://github.com/soedinglab/ccmpred/) [2] for prediction of direct couplings (takes a multiple sequence alignment as input)
    * [PSIPRED](http://bioinf.cs.ucl.ac.uk/psipred/) [3] for secondary structure prediction (takes a multiple sequence alignment as input)
    * (only if you want to run bbcontacts using DSSP annotation as an input, e.g. for benchmarking purposes) [DSSP](http://swift.cmbi.ru.nl/gv/dssp/) [4] for secondary structure assignment (takes a PDB structure as input)
    
 ### STEP 0.3: Clone the git repository for bbcontacts.
 
-Simply clone the [git repository for bbcontacts](https://bitbucket.org/soedinglab/bbcontacts).
+Simply clone the [git repository for bbcontacts](https://github.com/soedinglab/bbcontacts).
 
 
 ## STEP 1: Build a multiple sequence alignment
@@ -114,7 +114,7 @@ To compare the output you obtained to the expected output, you can then run:
 
 The Viterbi score values might differ slightly due to the numerical differences in the CCMpred computed couplings.
 
-As the example provided here (1nz0D) is a chain from the BetaSheet916 dataset [5], you can also download the [dataset annotation file](http://contact.ics.uci.edu/betadata/betasheet.dat) and run:
+As the example provided here (1nz0D) is a chain from the BetaSheet916 dataset [5], you can also download the [dataset annotation file](http://download.igb.uci.edu/betadata/betasheet.dat) and run:
        
           bbcontacts example/1nz0D.filt.mat 0.376 1nz0D -p example/1nz0D.filt.psipred -n 1nz0D -e betasheet.dat
 
@@ -177,6 +177,6 @@ J. Andreani and J. Soeding (2015) "bbcontacts: prediction of beta-strand pairing
 
    [4] W. Kabsch and C. Sander (1983). Dictionary of protein secondary structure: pattern recognition of hydrogen-bonded and geometrical features. Biopolymers, 22, 2577-2637.
 
-   [5] J. Cheng and P. Baldi (2005). Three-stage prediction of protein beta-sheets by neural networks, alignments and graph algorithms. Bioinformatics, 21 Suppl 1, 75-84. [Link to the BetaSheet916 dataset file](http://contact.ics.uci.edu/betadata/betasheet.dat) (version used in the paper accessed 12 September 2014)
+   [5] J. Cheng and P. Baldi (2005). Three-stage prediction of protein beta-sheets by neural networks, alignments and graph algorithms. Bioinformatics, 21 Suppl 1, 75-84. [Link to the BetaSheet916 dataset file](http://download.igb.uci.edu/betadata/betasheet.dat) (version used in the paper accessed 12 September 2014)
 
 
