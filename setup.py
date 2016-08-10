@@ -20,7 +20,7 @@ setup(
     author='Jessica Andreani & Johannes Soeding',
     author_email='jessica.andreani@mpibpc.mpg.de',
     license='GNU Affero General Public License v3',
-    url='https://github.com/fsimkovic/bbcontacts',
+    url='https://github.com/soedinglab/bbcontacts',
     package_dir={'bbcontacts': 'bbcontacts'},
     packages=['bbcontacts', 'bbcontacts.hmm'],
     package_data={'bbcontacts': ['bbcontacts.conf', 'paramfiles/*']},
