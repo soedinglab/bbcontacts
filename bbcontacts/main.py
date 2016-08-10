@@ -63,19 +63,21 @@ def main():
     defaultConfig = False
     if options.configfile:
         config.read(options.configfile)
+        configdir = os.path.dirname(options.configfile)
     else:
         config.read(os.path.join(progdir, "bbcontacts.conf"))
+        configdir = progdir
         defaultConfig = True
     
     ## Files containing HMM parameters
-    trprobfile = config.get("HMM parameter files", "trprobfile")
-    prioroffsetDSSPfile = config.get("HMM parameter files", "prioroffsetDSSPfile")
-    prioroffsetPSIPREDfile = config.get("HMM parameter files", "prioroffsetPSIPREDfile")
-    condsecstructprobDSSPfile = config.get("HMM parameter files", "condsecstructprobDSSPfile")
-    condsecstructprobPSIPREDfile = config.get("HMM parameter files", "condsecstructprobPSIPREDfile")
-    singlesecstructprobDSSPfile = config.get("HMM parameter files", "singlesecstructprobDSSPfile")
-    singlesecstructprobPSIPREDfile = config.get("HMM parameter files", "singlesecstructprobPSIPREDfile")
-    fitparamsfile = config.get("HMM parameter files", "fitparamsfile")
+    trprobfile = os.path.join(configdir,config.get("HMM parameter files", "trprobfile"))
+    prioroffsetDSSPfile = os.path.join(configdir,config.get("HMM parameter files", "prioroffsetDSSPfile"))
+    prioroffsetPSIPREDfile = os.path.join(configdir,config.get("HMM parameter files", "prioroffsetPSIPREDfile"))
+    condsecstructprobDSSPfile = os.path.join(configdir,config.get("HMM parameter files", "condsecstructprobDSSPfile"))
+    condsecstructprobPSIPREDfile = os.path.join(configdir,config.get("HMM parameter files", "condsecstructprobPSIPREDfile"))
+    singlesecstructprobDSSPfile = os.path.join(configdir,config.get("HMM parameter files", "singlesecstructprobDSSPfile"))
+    singlesecstructprobPSIPREDfile = os.path.join(configdir,config.get("HMM parameter files", "singlesecstructprobPSIPREDfile"))
+    fitparamsfile = os.path.join(configdir,config.get("HMM parameter files", "fitparamsfile"))
 
     if defaultConfig:
         # If the default config is used, the paths to the parameter files are relative
